@@ -25,6 +25,10 @@ apt-get -y upgrade
 ############################### Edit here #
 
 # install the following packages:  
+apt-get -y install build-essential
+apt-get -y install libpq-dev
+apt-get -y install ruby2.3
+apt-get -y install ruby2.3-dev 
 #       - build-essential  (development tools)
 #       - libpq-dev (to develop postgresql client apps)
 #       - ruby2.3 (Ruby language, version 2.3 ! accessible through the repo we added above)
@@ -46,7 +50,8 @@ sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "$PG_CONF"
 
 # Edit pg_hba.conf to add password authentication
 #
-
+sed -i "s/local all all peer/local    all             all                                 
+ md5/" "$PG_HBA"
 ############################################
 
 echo "host    all             all             all                     md5" >> "$PG_HBA"
